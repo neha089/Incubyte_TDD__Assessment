@@ -17,6 +17,10 @@ public class StringCalculatorTest {
     public void shouldReturnSumOfTwoCommaSeparatedNumbers(){
         assertEquals(3,StringCalculator.add("1,2"));
     }
+    @Test
+    public void shouldReturnSumOfMultipleCommaSeparatedNumbers(){
+        assertEquals(7,StringCalculator.add("1,2,3"));
+    }
 
 
 }
