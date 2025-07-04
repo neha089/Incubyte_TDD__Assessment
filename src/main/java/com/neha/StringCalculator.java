@@ -36,12 +36,9 @@ public class StringCalculator {
             int value = parseInt(number);
             if (value < 0) {
                 negativeNumbers.add(number);
-                continue;
+            } else if (value <= 1000) {
+                sum += value;
             }
-            if (value > 1000) {
-                continue;
-            }
-            sum += value;
         }
 
         if (!negativeNumbers.isEmpty()) {
@@ -56,8 +53,7 @@ public class StringCalculator {
     }
     public static int add(String input_string)  {
         if(input_string.isEmpty()) return 0;
-        int Sum=0;
-        String delimiter=",|\n";
+        String delimiter = DEFAULT_DELIMITER;
         String string_of_number=input_string;
         if (string_of_number.startsWith("//")) {
             int index_of_newline = string_of_number.indexOf("\n");
