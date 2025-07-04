@@ -6,6 +6,12 @@ import java.util.Set;
 import static java.lang.Integer.parseInt;
 
 public class StringCalculator {
+    private static String extractDelimiter(String delimiter_part) {
+        if (delimiter_part.startsWith("[") && delimiter_part.endsWith("]")) {
+            return delimiter_part.substring(1, delimiter_part.length() - 1);
+        }
+        return delimiter_part;
+    }
 
     public static int add(String input_string)  {
         if(input_string.isEmpty()) return 0;
@@ -13,17 +19,13 @@ public class StringCalculator {
         String[] numbers;
         String delimiter=",|\n";
         String string_of_number=input_string;
-        if(string_of_number.startsWith("//")) {
+        if (string_of_number.startsWith("//")) {
             int index_of_newline = string_of_number.indexOf("\n");
             String delimiter_part = string_of_number.substring(2, index_of_newline);
-            if (delimiter_part.startsWith("[") && delimiter_part.endsWith("]")) {
-                delimiter = delimiter_part.substring(1, delimiter_part.length() - 1);
-            } else {
-                delimiter = delimiter_part;
-            }
+            delimiter = extractDelimiter(delimiter_part);
             string_of_number = string_of_number.substring(index_of_newline + 1);
         }
-            if (delimiter.equals(",|\n")) {
+        if (delimiter.equals(",|\n")) {
                 numbers = string_of_number.split(delimiter);
             } else {
                 numbers = string_of_number.split(java.util.regex.Pattern.quote(delimiter));
