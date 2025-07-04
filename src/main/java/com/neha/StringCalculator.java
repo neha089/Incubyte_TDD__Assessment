@@ -26,7 +26,13 @@ public class StringCalculator {
                     negative_numbers.add(number);
                     continue;
                 }
-                Sum += parseInt(number);
+                else if(parseInt(number)>1000){
+                    System.out.println(number);
+                    continue;
+                }
+                else {
+                    Sum += parseInt(number);
+                }
             }
         if(!negative_numbers.isEmpty()){
             String negativeNumbersList = String.join(", ", negative_numbers);
