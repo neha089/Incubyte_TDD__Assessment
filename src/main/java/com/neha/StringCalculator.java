@@ -6,7 +6,9 @@ public class StringCalculator {
 
     public static int add(String intput_string) {
         int length_of_string=intput_string.length();
+        String [] numbers=intput_string.split(",");
         if(length_of_string==1) return parseInt(intput_string);
+        if(length_of_string==3) return parseInt(numbers[0])+parseInt(numbers[1]);
         return 0;
     }
 }
