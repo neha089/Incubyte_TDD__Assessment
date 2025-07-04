@@ -15,7 +15,9 @@ public class StringCalculator {
             while (i < delimiter_part.length()) {
                 int start = delimiter_part.indexOf('[', i);
                 int end = delimiter_part.indexOf(']', start);
-                if (start == -1 || end == -1) break;
+                if (start == -1 || end == -1) {
+                    throw new IllegalArgumentException("Invalid custom delimiter format");
+                }
                 String delim = delimiter_part.substring(start + 1, end);
                 if (combinedDelimiter.length() > 0) combinedDelimiter.append("|");
                 combinedDelimiter.append(java.util.regex.Pattern.quote(delim));
