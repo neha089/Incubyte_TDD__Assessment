@@ -3,6 +3,7 @@ package com.neha;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class StringCalculatorTest {
     @Test
@@ -36,6 +37,12 @@ public class StringCalculatorTest {
         assertEquals(12, StringCalculator.add("//#\n1#2#9"));
         assertEquals(11,StringCalculator.add("//##\n1##2##3##4##1"));
     }
-
+    @Test
+    public void shouldThrowExceptionForNegativeNumbers(){
+        Exception e=assertThrows(IllegalAccessException.class,()->{
+            StringCalculator.add("1,-2,-2,4");
+        });
+        assertEquals("Negative Numbers are not allowed which you added : -2",e.getMessage());
+    }
 
     }
