@@ -37,10 +37,18 @@ public class StringCalculator {
         return sum;
     }
 
+    private static String[] splitNumbers(String input, String delimiter) {
+        if (delimiter.equals(",|\n")) {
+            return input.split(delimiter);
+        } else {
+            return input.split(java.util.regex.Pattern.quote(delimiter));
+        }
+    }
+
+
     public static int add(String input_string)  {
         if(input_string.isEmpty()) return 0;
         int Sum=0;
-        String[] numbers;
         String delimiter=",|\n";
         String string_of_number=input_string;
         if (string_of_number.startsWith("//")) {
@@ -49,11 +57,7 @@ public class StringCalculator {
             delimiter = extractDelimiter(delimiter_part);
             string_of_number = string_of_number.substring(index_of_newline + 1);
         }
-        if (delimiter.equals(",|\n")) {
-                numbers = string_of_number.split(delimiter);
-            } else {
-                numbers = string_of_number.split(java.util.regex.Pattern.quote(delimiter));
-            }
+        String[] numbers = splitNumbers(string_of_number, delimiter);
         return parseAndSum(numbers);
 
     }
