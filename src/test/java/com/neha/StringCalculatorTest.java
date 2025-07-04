@@ -49,6 +49,10 @@ public class StringCalculatorTest {
         assertEquals(2017,StringCalculator.add("1,2,1000,10,1000,4"));
         assertEquals(21,StringCalculator.add("10,2000,1001,11"));
     }
+    @Test
+    public void shouldHandleDelimiterWithAnyLength(){
+        assertEquals(19,StringCalculator.add("//[***]\n10***1***8"));
+    }
 
 
 }
