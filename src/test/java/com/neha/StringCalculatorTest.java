@@ -42,7 +42,7 @@ public class StringCalculatorTest {
         Exception e = assertThrows(IllegalArgumentException.class, () -> {
             StringCalculator.add("3,4,-8");
         });
-        assertEquals("Negative numbers not allowed Which You Entered: -8", e.getMessage());
+        assertEquals("Negative numbers not allowed: -8", e.getMessage());
     }
 
 

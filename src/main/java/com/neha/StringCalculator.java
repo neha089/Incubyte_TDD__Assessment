@@ -30,7 +30,7 @@ public class StringCalculator {
             }
         if(!negative_numbers.isEmpty()){
             String negativeNumbersList = String.join(", ", negative_numbers);
-            throw new IllegalArgumentException("Negative numbers not allowed Which You Entered: " + negativeNumbersList);
+            throw new IllegalArgumentException("Negative numbers not allowed: " + negativeNumbersList);
         }
         return Sum;
     }
