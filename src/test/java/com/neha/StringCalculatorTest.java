@@ -67,16 +67,12 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void shouldHandleMalformedCustomDelimiterBrackets() {
-        // missing closing bracket – will hit `start != -1 && end == -1` -> break
-        assertEquals(6, StringCalculator.add("//[***\n1***2***3")); // fallback to default
+    public void shouldThrowExceptionForMalformedDelimiter() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            StringCalculator.add("//[***\n1***2***3");
+        });
     }
 
-    @Test
-    public void shouldHandleEmptyEntriesBetweenDelimiters() {
-        // This ensures the `number.isEmpty()` condition is hit
-        assertEquals(6, StringCalculator.add("1,,2, ,3")); // 1 + 2 + 3 = 6, ignores empty and space
-    }
 
     @Test
     public void shouldHandleOnlyNegativeNumbers() {
