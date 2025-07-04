@@ -9,9 +9,9 @@ public class StringCalculator {
         int Sum=0;
         if(input_string.startsWith("//")){
             int index_of_newline=input_string.indexOf("\n");
-            char delimiter=input_string.charAt(2);
+            String delimiter=input_string.substring(2,index_of_newline);
             input_string=input_string.substring(index_of_newline+1);
-            String numbers1[]=input_string.split(String.valueOf(delimiter));
+            String numbers1[]=input_string.split(delimiter);
             for(String number:numbers1){
                 Sum+=parseInt(number);
             }
