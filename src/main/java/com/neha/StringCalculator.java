@@ -12,6 +12,30 @@ public class StringCalculator {
         }
         return delimiter_part;
     }
+    private static int parseAndSum(String[] numbers) {
+        int sum = 0;
+        Set<String> negativeNumbers = new LinkedHashSet<>();
+
+        for (String number : numbers) {
+            number = number.trim();
+            int value = parseInt(number);
+            if (value < 0) {
+                negativeNumbers.add(number);
+                continue;
+            }
+            if (value > 1000) {
+                continue;
+            }
+            sum += value;
+        }
+
+        if (!negativeNumbers.isEmpty()) {
+            String negativeNumbersList = String.join(", ", negativeNumbers);
+            throw new IllegalArgumentException("Negative numbers not allowed: " + negativeNumbersList);
+        }
+
+        return sum;
+    }
 
     public static int add(String input_string)  {
         if(input_string.isEmpty()) return 0;
@@ -30,26 +54,7 @@ public class StringCalculator {
             } else {
                 numbers = string_of_number.split(java.util.regex.Pattern.quote(delimiter));
             }
-        Set<String> negative_numbers=new LinkedHashSet<>();
+        return parseAndSum(numbers);
 
-            for (String number :numbers) {
-                number=number.trim();
-                int value=parseInt(number);
-                if(value<0) {
-                    negative_numbers.add(number);
-                    continue;
-                }
-                else if(value>1000){
-                    continue;
-                }
-                else {
-                    Sum += parseInt(number);
-                }
-            }
-        if(!negative_numbers.isEmpty()){
-            String negativeNumbersList = String.join(", ", negative_numbers);
-            throw new IllegalArgumentException("Negative numbers not allowed: " + negativeNumbersList);
-        }
-        return Sum;
     }
 }
