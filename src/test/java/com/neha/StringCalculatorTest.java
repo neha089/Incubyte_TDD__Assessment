@@ -30,6 +30,11 @@ public class StringCalculatorTest {
     public void shouldHandleNewlineAsDelimiter(){
         assertEquals(20,StringCalculator.add("10\n2,8"));
     }
+    @Test
+    public void shouldHandleAnyCustomDelimiter() {
+        assertEquals(10, StringCalculator.add("//;\n1;2;3;4"));
+        assertEquals(12, StringCalculator.add("//#\n1#2#9"));
+    }
 
 
-}
+    }
