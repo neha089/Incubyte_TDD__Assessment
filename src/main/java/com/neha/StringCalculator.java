@@ -13,15 +13,24 @@ public class StringCalculator {
         String[] numbers;
         String delimiter=",|\n";
         String string_of_number=input_string;
-        if(string_of_number.startsWith("//")){
-            int index_of_newline=string_of_number.indexOf("\n");
-            delimiter=string_of_number.substring(2,index_of_newline);
-            string_of_number=string_of_number.substring(index_of_newline+1);
+        if(string_of_number.startsWith("//")) {
+            int index_of_newline = string_of_number.indexOf("\n");
+            String delimiter_part = string_of_number.substring(2, index_of_newline);
+            if (delimiter_part.startsWith("[") && delimiter_part.endsWith("]")) {
+                delimiter = delimiter_part.substring(1, delimiter_part.length() - 1);
+            } else {
+                delimiter = delimiter_part;
+            }
+            string_of_number = string_of_number.substring(index_of_newline + 1);
         }
-        numbers=string_of_number.split(delimiter);
+            if (delimiter.equals(",|\n")) {
+                numbers = string_of_number.split(delimiter);
+            } else {
+                numbers = string_of_number.split(java.util.regex.Pattern.quote(delimiter));
+            }
         Set<String> negative_numbers=new LinkedHashSet<>();
 
-            for (String number : numbers) {
+            for (String number :numbers) {
                 number=number.trim();
                 int value=parseInt(number);
                 if(value<0) {
