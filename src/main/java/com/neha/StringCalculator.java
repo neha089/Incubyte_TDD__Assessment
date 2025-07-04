@@ -22,12 +22,13 @@ public class StringCalculator {
         Set<String> negative_numbers=new LinkedHashSet<>();
 
             for (String number : numbers) {
-                if(parseInt(number)<0) {
+                number=number.trim();
+                int value=parseInt(number);
+                if(value<0) {
                     negative_numbers.add(number);
                     continue;
                 }
-                else if(parseInt(number)>1000){
-                    System.out.println(number);
+                else if(value>1000){
                     continue;
                 }
                 else {
