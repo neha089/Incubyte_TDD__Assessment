@@ -53,9 +53,13 @@ public class StringCalculatorTest {
     public void shouldHandleDelimiterWithAnyLength(){
         assertEquals(19,StringCalculator.add("//[***]\n10***1***8"));
     }
-@Test
+    @Test
     public void shouldHandleTwoTypeOfDiffrentDelimiterWithAnyLength(){
         assertEquals(6,StringCalculator.add("//[*][%]\n1*2%3"));
 }
+  @Test
+    public void shouldHandleAnyNumberOfDelimiterWithAnyLength(){
+        assertEquals(13,StringCalculator.add("//[#][%][*]\n1*2%3%4#3"));
+  }
 
 }
