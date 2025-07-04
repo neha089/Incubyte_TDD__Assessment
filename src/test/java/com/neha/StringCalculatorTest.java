@@ -38,11 +38,12 @@ public class StringCalculatorTest {
         assertEquals(11,StringCalculator.add("//##\n1##2##3##4##1"));
     }
     @Test
-    public void shouldThrowExceptionForNegativeNumbers(){
-        Exception e=assertThrows(IllegalAccessException.class,()->{
-            StringCalculator.add("1,-2,-2,4");
+    public void shouldThrowExceptionForNegativeNumbers() {
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
+            StringCalculator.add("3,4,-8");
         });
-        assertEquals("Negative Numbers are not allowed which you added : -2",e.getMessage());
+        assertEquals("Negative numbers not allowed Which You Entered: -8", e.getMessage());
     }
 
-    }
+
+}

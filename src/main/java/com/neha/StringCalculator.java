@@ -1,10 +1,13 @@
 package com.neha;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import static java.lang.Integer.parseInt;
 
 public class StringCalculator {
 
-    public static int add(String input_string) {
+    public static int add(String input_string)  {
         if(input_string.isEmpty()) return 0;
         int Sum=0;
         String[] numbers;
@@ -16,9 +19,19 @@ public class StringCalculator {
             string_of_number=string_of_number.substring(index_of_newline+1);
         }
         numbers=string_of_number.split(delimiter);
+        Set<String> negative_numbers=new LinkedHashSet<>();
+
             for (String number : numbers) {
+                if(parseInt(number)<0) {
+                    negative_numbers.add(number);
+                    continue;
+                }
                 Sum += parseInt(number);
             }
+        if(!negative_numbers.isEmpty()){
+            String negativeNumbersList = String.join(", ", negative_numbers);
+            throw new IllegalArgumentException("Negative numbers not allowed Which You Entered: " + negativeNumbersList);
+        }
         return Sum;
     }
 }
