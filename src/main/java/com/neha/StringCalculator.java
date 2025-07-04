@@ -6,6 +6,8 @@ import java.util.Set;
 import static java.lang.Integer.parseInt;
 
 public class StringCalculator {
+    private static final String DEFAULT_DELIMITER = ",|\n";
+
     private static String extractDelimiter(String delimiter_part) {
         if (delimiter_part.startsWith("[") && delimiter_part.endsWith("]")) {
             StringBuilder combinedDelimiter = new StringBuilder();
@@ -30,6 +32,7 @@ public class StringCalculator {
 
         for (String number : numbers) {
             number = number.trim();
+            if (number.isEmpty()) continue;
             int value = parseInt(number);
             if (value < 0) {
                 negativeNumbers.add(number);
