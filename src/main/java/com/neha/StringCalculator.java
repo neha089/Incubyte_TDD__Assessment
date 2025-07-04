@@ -8,10 +8,22 @@ import static java.lang.Integer.parseInt;
 public class StringCalculator {
     private static String extractDelimiter(String delimiter_part) {
         if (delimiter_part.startsWith("[") && delimiter_part.endsWith("]")) {
-            return delimiter_part.substring(1, delimiter_part.length() - 1);
+            StringBuilder combinedDelimiter = new StringBuilder();
+            int i = 0;
+            while (i < delimiter_part.length()) {
+                int start = delimiter_part.indexOf('[', i);
+                int end = delimiter_part.indexOf(']', start);
+                if (start == -1 || end == -1) break;
+                String delim = delimiter_part.substring(start + 1, end);
+                if (combinedDelimiter.length() > 0) combinedDelimiter.append("|");
+                combinedDelimiter.append(java.util.regex.Pattern.quote(delim));
+                i = end + 1;
+            }
+            return combinedDelimiter.toString();
         }
-        return delimiter_part;
+        return java.util.regex.Pattern.quote(delimiter_part); // for single-char custom
     }
+
     private static int parseAndSum(String[] numbers) {
         int sum = 0;
         Set<String> negativeNumbers = new LinkedHashSet<>();
@@ -36,16 +48,9 @@ public class StringCalculator {
 
         return sum;
     }
-
     private static String[] splitNumbers(String input, String delimiter) {
-        if (delimiter.equals(",|\n")) {
-            return input.split(delimiter);
-        } else {
-            return input.split(java.util.regex.Pattern.quote(delimiter));
-        }
+        return input.split(delimiter);
     }
-
-
     public static int add(String input_string)  {
         if(input_string.isEmpty()) return 0;
         int Sum=0;
