@@ -1,17 +1,63 @@
-# String Calculator TDD Project
+# String Calculator TDD Assessment - IncuByte
 
 ## Overview
-The **String Calculator** is a Java-based application developed using Test-Driven Development (TDD). It processes a string of numbers separated by delimiters (e.g., commas, newlines, or custom delimiters) and returns their sum. The project follows strict TDD practices, where each feature is driven by failing tests, followed by code implementation to pass the tests, and subsequent refactoring to improve code quality.
+The **String Calculator** is a Java- based using Test-Driven Development (TDD). It takes a string of numbers separated by delimiters (e.g., commas, newlines, or custom delimiters) and returns their sum. The project follows strict TDD practices, reliable code through iterative test-first development.
 
 ### Features
-- Handles empty strings (returns 0).
+- Returns 0 for empty strings.
 - Processes single numbers.
 - Sums multiple numbers separated by commas or newlines.
-- Supports custom single-character and multi-character delimiters (e.g., `//;\n1;2;3` or `//[***]\n1***2***3`).
-- Supports multiple custom delimiters (e.g., `//[*][%]\n1*2%3`).
+- Supports custom delimiters (e.g., `//;\n1;2;3` or `//[***]\n1***2***3`).
+- Handles multiple custom delimiters (e.g., `//[*][%]\n1*2%3`).
 - Ignores numbers greater than 1000.
-- Throws an exception for negative numbers with a descriptive message.
-- Handles malformed inputs (e.g., invalid delimiter formats) by throwing exceptions.
+- Throws exceptions for negative numbers with a clear message.
+- Handles invalid delimiter formats with exceptions.
+
+## Test-Driven Development (TDD)
+### What is TDD?
+Test-Driven Development (TDD) is a software development approach where tests are written before the code. Each test defines a specific requirement, and code is written to pass the test, ensuring functionality and reliability.
+
+### Why Use TDD?
+- **Reliability**: Tests ensure code meets requirements and prevents regressions.
+- **Clarity**: Writing tests first clarifies the expected behavior.
+- **Maintainability**: Modular, well-tested code is easier to refactor and extend.
+- **Confidence**: Comprehensive tests provide assurance that the code works as intended.
+
+### TDD Process
+1. Write a failing test (Red).
+2. Write minimal code to pass the test (Green).
+3. Refactor to improve code quality while keeping tests passing.
+
+## Example Test Cases
+The following examples show how the String Calculator processes various inputs:
+
+- **Input**: `""` → **Output**: `0`
+- **Input**: `"1"` → **Output**: `1`
+- **Input**: `"30"` → **Output**: `30`
+- **Input**: `"1,2"` → **Output**: `3`
+- **Input**: `"10\n2,8"` → **Output**: `20`
+- **Input**: `"//;\n1;2;3;4"` → **Output**: `10`
+- **Input**: `"3,4,-8"` → **Output**: Throws `IllegalArgumentException: Negative numbers not allowed: -8`
+- **Input**: `"10,2000,1001,11"` → **Output**: `21`
+- **Input**: `"//[***]\n10***1***8"` → **Output**: `19`
+- **Input**: `"//[*][%]\n1*2%3"` → **Output**: `6`
+
+### How Tests Are Handled
+The `StringCalculator` class processes inputs as follows:
+- **Empty String**: Returns 0 for empty input.
+- **Single Number**: Converts the string to an integer.
+- **Comma/Newline Delimiters**: Splits input on commas or newlines.
+- **Custom Delimiters**: Extracts delimiters from `//[delimiter]\n`, supporting single or multiple delimiters.
+- **Negative Numbers**: Throws an exception listing all negative numbers.
+- **Numbers > 1000**: Ignores numbers greater than 1000 during summation.
+
+The code is modular, with `extractDelimiter`, `splitNumbers`, and `parseAndSum` handling specific tasks, ensuring clarity and maintainability.
+
+## Code Coverage
+The project achieves **100% coverage**
+
+![100% Coverage Report](screenshots/c.png)
+
 
 ### Test Cases 
 | Description | Screenshots |
@@ -39,8 +85,4 @@ The **String Calculator** is a Java-based application developed using Test-Drive
 | [Step-11] Pass test: any length of any number of delimiters in [] | ![Step-11 Pass](screenshots/11p.png#width=600px) |
 | [Step-12] Pass test: handle all branch and lines | ![Step-12 Pass](screenshots/14p.png#width=600px) |
 
-## Code Coverage
-The project achieves **100% coverage**
-
-![100% Coverage Report](screenshots/c.png)
 
