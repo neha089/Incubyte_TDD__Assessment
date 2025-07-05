@@ -15,11 +15,8 @@ public class StringCalculator {
             while (i < delimiter_part.length()) {
                 int start = delimiter_part.indexOf('[', i);
                 int end = delimiter_part.indexOf(']', start);
-                if (start == -1 || end == -1) {
-                    throw new IllegalArgumentException("Invalid custom delimiter format");
-                }
                 String delim = delimiter_part.substring(start + 1, end);
-                if (combinedDelimiter.length() > 0) combinedDelimiter.append("|");
+                if (!combinedDelimiter.isEmpty()) combinedDelimiter.append("|");
                 combinedDelimiter.append(java.util.regex.Pattern.quote(delim));
                 i = end + 1;
             }
@@ -34,7 +31,6 @@ public class StringCalculator {
 
         for (String number : numbers) {
             number = number.trim();
-            if (number.isEmpty()) continue;
             int value = parseInt(number);
             if (value < 0) {
                 negativeNumbers.add(number);
